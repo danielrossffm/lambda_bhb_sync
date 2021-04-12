@@ -1,0 +1,22 @@
+--- 
+artifacts: 
+  files: 
+    - $filename
+env: 
+  exported-variables: 
+    - filename
+  variables: 
+    filename: bhb_sync.zip
+phases: 
+  build: 
+    commands: 
+      - "echo Start Build - create zip file from folder on `date`"
+      - "zip -qr $filename ./*"
+  post_build: 
+    commands: 
+      - "echo Build completed on `date`"
+  pre_build: 
+    commands: 
+      - "python -m pip install --upgrade pip"
+      - "python -m pip install -r requirements.txt -t ."
+version: 0.2
